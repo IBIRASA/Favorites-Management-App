@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'favorites.dart';
-import 'favorites_screen.dart'; // Import for the Favorites screen
+import 'favorites_screen.dart'; 
 
 void main() {
   runApp(
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(color: Colors.white),
         ),
       ),
-      home: ProductListScreen(),
+      home: const ProductListScreen(),
     );
   }
 }
@@ -34,13 +34,13 @@ class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
 
   @override
+ 
+  // ignore: library_private_types_in_public_api
   _ProductListScreenState createState() => _ProductListScreenState();
 }
 
 class _ProductListScreenState extends State<ProductListScreen> {
-  final List<String> products = [
-    
-  ];
+  final List<String> products = [];
   final Map<String, bool> _favoriteStatus = {};
 
   void _addNewItem() {
@@ -63,12 +63,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 if (newItem.isNotEmpty && !products.contains(newItem)) {
                   setState(() {
                     products.add(newItem);
-                    _favoriteStatus[newItem] =
-                        false; // Initialize favorite status
+                    _favoriteStatus[newItem] = false;
                   });
                   Navigator.of(context).pop();
                 } else {
-                  // Optionally show an alert if the item is empty or already exists
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Please enter a valid item name.'),
@@ -149,15 +147,15 @@ class _ProductListScreenState extends State<ProductListScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FavoritesScreen()),
+                MaterialPageRoute(builder: (context) => const FavoritesScreen()),
               );
             },
           ),
           const SizedBox(height: 8.0),
           FloatingActionButton(
             heroTag: 'addItemButton',
-            child: const Icon(Icons.add),
             onPressed: _addNewItem,
+            child: const Icon(Icons.add),
           ),
         ],
       ),
